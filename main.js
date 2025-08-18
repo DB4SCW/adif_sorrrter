@@ -3,6 +3,7 @@ const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
+//create window
 function createWindow() {
   const win = new BrowserWindow({
     width: 900,
@@ -15,14 +16,14 @@ function createWindow() {
       contextIsolation: true,
       nodeIntegration: false,
       preload: path.join(__dirname, 'preload.js')
-    },
-    icon: path.join(__dirname, 'assets/adif_sorrrter_512x512.png')
+    }
   });
 
   win.once('ready-to-show', () => win.show());
   win.loadFile(path.join(__dirname, 'renderer', 'index.html'));
 }
 
+//main handler when app is ready
 app.whenReady().then(() => {
   createWindow();
 
@@ -31,14 +32,15 @@ app.whenReady().then(() => {
   });
 });
 
+//handle closing
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
-// IPC Handlers
+//IPC Handlers
 ipcMain.handle('open-adif', async () => {
   const { canceled, filePaths } = await dialog.showOpenDialog({
-    title: 'ADIF-Datei öffnen',
+    title: 'Open ADIF-file',
     properties: ['openFile'],
     filters: [{ name: 'ADIF', extensions: ['adi', 'adif', 'txt'] }]
   });
@@ -55,7 +57,7 @@ ipcMain.handle('open-adif', async () => {
 
 ipcMain.handle('save-adif', async (_evt, { defaultPath, content }) => {
   const { canceled, filePath } = await dialog.showSaveDialog({
-    title: 'Sortierte ADIF-Datei speichern',
+    title: 'Save sorted ADIF file',
     defaultPath: defaultPath || 'sorted.adi',
     filters: [{ name: 'ADIF', extensions: ['adi', 'adif', 'txt'] }]
   });

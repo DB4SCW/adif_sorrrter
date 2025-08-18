@@ -17,11 +17,11 @@ let current = {
   filePath: null,
   raw: '',
   header: '',
-  records: [], // array of raw record strings (each ends with <EOR>)
+  records: [], //array of raw record strings (each ends with <EOR>)
   tail: ''
 };
 
-// --- Theme (Dark/Light) ---
+//--- Theme (Dark/Light) ---
 function setTheme(mode) {
   const root = document.documentElement;
   if (mode === 'light') {
@@ -41,7 +41,7 @@ function setTheme(mode) {
   if (saved === 'light' || saved === 'dark') {
     setTheme(saved);
   } else {
-    // Default dark, but respect OS if explicitly light
+    //Default dark, but respect OS if explicitly light
     const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     setTheme(prefersLight ? 'light' : 'dark');
   }
@@ -52,7 +52,7 @@ themeBtn.addEventListener('click', () => {
   setTheme(now);
 });
 
-// --- Utilities ---
+//--- Utilities ---
 function rstrip(str) {
   return str.replace(/\s+$/u, '');
 }
@@ -182,7 +182,7 @@ function buildOutputSorted() {
   return current.header + sorted.join('') + current.tail;
 }
 
-// --- UI Events ---
+//--- UI Events ---
 openBtn.addEventListener('click', async () => {
   try {
     const res = await window.adifAPI.openFile();
@@ -208,7 +208,7 @@ saveBtn.addEventListener('click', async () => {
   }
 });
 
-// Drag & Drop (mit direktem Read über IPC)
+//Drag & Drop (with direct read using IPC)
 ['dragenter','dragover'].forEach(evt => dropzone.addEventListener(evt, e => {
   e.preventDefault(); e.stopPropagation(); dropzone.classList.add('dragover');
 }));
@@ -229,7 +229,7 @@ dropzone.addEventListener('drop', async (e) => {
   }
 });
 
-// Keyboard Shortcuts
+//keyboard  shortcuts
 window.addEventListener('keydown', (e) => {
   const mod = e.ctrlKey || e.metaKey;
   if (mod && e.key.toLowerCase() === 'o') { e.preventDefault(); openBtn.click(); }
