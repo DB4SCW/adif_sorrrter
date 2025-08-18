@@ -68,7 +68,7 @@ ipcMain.handle('save-adif', async (_evt, { defaultPath, content }) => {
   }
 });
 
-//direct read by path (for Drag&Drop)
+//direct read by path (for Drag&Drop) 
 ipcMain.handle('read-path', async (_evt, filePath) => {
   try {
     const content = fs.readFileSync(filePath, 'utf8');
