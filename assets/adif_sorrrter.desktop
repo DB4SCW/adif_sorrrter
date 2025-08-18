@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=ADIF_Sorrrter
+Comment=Amateur Radio Voice Parrot Utility
+Exec=adif_sorrrter
+Icon=parrrot_icon_512
+Terminal=false
+Type=Application
+Categories=Utility;HamRadio;
+StartupWMClass=Parrrot

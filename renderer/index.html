@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ADIF Sorrrter</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>ADIF Sorrrter</h1>
+      <p class="sub">Sorts ADIF files to comply with DARC Bureau rules.</p>
+
+      <div class="theme-toggle">
+        <button id="themeBtn" class="btn small" aria-pressed="true" aria-label="Switch dark mode">
+          🌙 Dark
+        </button>
+      </div>
+    </header>
+
+    <main class="card">
+      <!-- Nur noch der Open-Button hier -->
+      <div class="controls">
+        <button id="openBtn" class="btn btn-open">📂 Open ADIF</button>
+      </div>
+
+      <div id="dropzone" class="dropzone" aria-label="Datei hierher ziehen">
+        <div>
+          <strong>Drag & Drop</strong> oder <em>Open ADIF</em>
+        </div>
+      </div>
+
+      <div class="meta" id="meta" hidden>
+        <div class="row"><span>File:</span><code id="filePath"></code></div>
+        <div class="row"><span>Records:</span><code id="countAll">0</code></div>
+        <div class="row group">
+          <span>DE / US / Other:</span>
+          <code id="countDE">0</code>
+          <code id="countUS">0</code>
+          <code id="countRest">0</code>
+        </div>
+      </div>
+
+      <details class="details">
+        <summary>Preview Header</summary>
+        <pre id="headerPreview"></pre>
+      </details>
+
+      <!-- NEU: Save-Button unter der Vorschau -->
+      <button id="saveBtn" class="btn btn-save" disabled>💾 Save sorted</button>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </main>
+
+    <footer class="footer">
+      <span>⌘/Ctrl+O: open • ⌘/Ctrl+S: save</span>
+    </footer>
+  </div>
+
+  <script src="./renderer.js"></script>
+</body>
+</html>
