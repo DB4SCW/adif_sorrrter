@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder",
-    "dist:mac-universal": "electron-builder --mac --universal --arm64",
+    "dist:mac": "electron-builder --mac --universal --arm64",
     "dist:linux": "electron-builder --linux deb rpm tar.gz --arm64 --x64 --armv7l"
   },
   "build": {
