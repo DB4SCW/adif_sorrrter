@@ -2,8 +2,7 @@ name: 🔨 Build ADIF Sorrrter App
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   build:
@@ -24,21 +23,50 @@ jobs:
           node-version: 20
 
       - name: 📦 Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: 🛠️ Build Electron app
-        run: |
-          if [ "${{ matrix.os }}" = "macos-latest" ]; then
-            npm run dist:mac-universal
-          else
-            npm run dist
-          fi
         shell: bash
         env:
           CI: false
+        run: |
+          if [ "${{ matrix.os }}" = "macos-latest" ]; then
+            npm run dist:mac
+          else
+            npm run dist
+          fi
 
-      - name: 📤 Upload dist artifacts
+      - name: 📤 Upload macOS artifacts
+        if: matrix.os == 'macos-latest'
         uses: actions/upload-artifact@v4
         with:
-          name: adif-sorrrter-${{ matrix.os }}
-          path: dist/
+          name: adif-sorrrter-macos
+          path: |
+            dist/*.dmg
+            dist/*.blockmap
+            dist/latest-*.yml
+          if-no-files-found: error
+
+      - name: 📤 Upload Windows artifacts
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: adif-sorrrter-windows
+          path: |
+            dist/*.exe
+            dist/*.msi
+            dist/*.blockmap
+            dist/latest-*.yml
+          if-no-files-found: error
+
+      - name: 📤 Upload Linux artifacts
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: adif-sorrrter-linux
+          path: |
+            dist/*.deb
+            dist/*.rpm
+            dist/*.AppImage
+            dist/*.tar.gz
+          if-no-files-found: error
