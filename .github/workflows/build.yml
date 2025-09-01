@@ -50,6 +50,7 @@ jobs:
           name: adif-sorrrter-macos
           path: |
             dist/*.dmg
+            dist/*.pkg
             dist/*.blockmap
             dist/latest-*.yml
           if-no-files-found: error
@@ -76,4 +77,5 @@ jobs:
             dist/*.rpm
             dist/*.AppImage
             dist/*.tar.gz
+            dist/*.snap
           if-no-files-found: error
