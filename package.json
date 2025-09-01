@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A cross-platform software way to sort ADIF files according to DARC Bureau rules",
   "main": "main.js",
+  "author": "Stefan DB4SCW dev@db4scw.de",
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder",
