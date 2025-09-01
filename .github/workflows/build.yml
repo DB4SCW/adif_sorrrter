@@ -32,6 +32,13 @@ jobs:
         run: |
           if [ "${{ matrix.os }}" = "macos-latest" ]; then
             npm run dist:mac
+          elif [ "${{ matrix.os }}" = "windows-latest" ]; then
+            # Build one arch per job to avoid WiX cleanup flakiness
+            if [ "${{ matrix.win_arch }}" = "arm64" ]; then
+              npx electron-builder --win nsis msi --arm64
+            else
+              npx electron-builder --win nsis msi --x64
+            fi
           else
             npm run dist
           fi
