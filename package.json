@@ -38,11 +38,7 @@
       "icon": "adif_sorrrter_512x512.png"
     },
     "win": {
-      "target": [
-        { "target": "nsis", "arch": ["x64"] },
-        { "target": "msi",  "arch": ["x64"] },
-        { "target": "portable",  "arch": ["x64"] }
-      ],
+      "target": ["nsis", "msi", "portable"],
       "icon": "adif_sorrrter.ico"
     },
     "linux": {
