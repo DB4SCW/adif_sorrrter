@@ -1,6 +1,6 @@
 {
   "name": "adif-sorrrter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A cross-platform software way to sort ADIF files according to DARC Bureau rules",
   "main": "main.js",
   "author": "Stefan DB4SCW dev@db4scw.de",
@@ -64,6 +64,7 @@
     "electron-builder": "^24.6.0"
   },
   "dependencies": {
-    "axios": "^1.6.8"
+    "axios": "^1.6.8",
+    "semver": "^7.7.2"
   }
 }

@@ -100,3 +100,18 @@ code { background: rgba(127,127,127,0.12); padding: 2px 6px; border-radius: 6px;
 .btn-save:hover {
   background-color: #16a34a;
 }
+
+#toast {
+  position: fixed; top: 16px; right: 16px;
+  max-width: 320px;
+  padding: 12px 16px; border-radius: 8px;
+  background: #fff9c4; color: #000;
+  font-family: sans-serif; font-size: 14px; line-height: 1.4;
+  display: none; z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+/* Force black links inside the toast (handles :visited etc. and beats !important) */
+#toast a, #toast a:visited, #toast a:hover, #toast a:active {
+  color: #000 !important;
+  text-decoration: underline;
+}
